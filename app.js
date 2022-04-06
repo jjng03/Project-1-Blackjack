@@ -1,4 +1,7 @@
 /*
+
+** homepage will have a play button that will transition into the game **
+
 1) Assigning global variables / DOM
 -player
 -dealer
@@ -6,8 +9,8 @@
 - values to "Ace" & "Face cards"
 
 2) Creating arrays
--deck 
--suits
+-deck = []
+-suits = []
 
 3) addEventListener to buttons
 -start game - deal cards when it's clicked

@@ -13,7 +13,8 @@
 -suits = []
 
 3) addEventListener to buttons
--start game - deal cards when it's clicked
+-play - play button will load the game page
+-deal - deal cards when it's clicked
 -new game - reset game including scoreboard 
 -hit - pulling a card from the array
 -stay - keep current cards and let dealer hit 

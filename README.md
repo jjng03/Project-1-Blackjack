@@ -10,4 +10,4 @@ Blackjack is a player vs dealer card game.  The objective of the game is to beat
 4) Score will be recorded throughout the game.
 
 # Wireframe
-![Blackjack](https://user-images.githubusercontent.com/101623317/162019112-9bd934a8-d0aa-4fef-9348-a8247c8a4983.png)
+![Blackjack](https://user-images.githubusercontent.com/101623317/162050424-932acd0f-df61-4928-804e-a2de384de318.png)

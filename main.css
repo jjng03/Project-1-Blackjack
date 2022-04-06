@@ -1,0 +1,30 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.deck {
+    border: solid black;
+    width: 200px;
+    height: 200px;
+    margin-right: 700px;
+    margin-top: -300px;
+}
+
+.dealer,
+.player {
+    border: solid black;
+    width: 400px;
+    height: 250px;
+    margin-top: 50px;
+}
+
+.score {
+    margin-left: 750px;
+    margin-top: -560px;
+    border: solid black;
+    width: 250px;
+    height: 500px;
+}

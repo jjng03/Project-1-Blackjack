@@ -21,7 +21,8 @@
 
 4) Functions 
 -startGame() - Main function will load the entire game
--build a deck
+-build a deck - get combinations of every card/suit
+-shuffle deck - mix the array of the decks
 -add up the values when the cards are dealt
 -pulling random card from the array / randomize player and dealer cards
 
@@ -31,33 +32,53 @@
 
 
 */
-
+//---------------------------------------------------------------------------------
 // ****** GLOBAL VARIABLES ******
+//---------------------------------------------------------------------------------
 
 var player = 0;
 var dealer = 0;
 var playerScore = 0;
 var dealerScore = 0;
 
-var hidden;
-var deck;
+var deck = [];
 
 var onHit = true; // allow the player to hit while player <= 21
 var blackJack = false; 
 
+//---------------------------------------------------------------------------------
 // ****** FUNCTIONS ******
+//---------------------------------------------------------------------------------
 
 function buildDeck() {
     let cards = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
     let suits = ["C", "D", "H", "S"];
-    deck = [];
-
+    
+    // iterates through each card and suit and pushed into the empty array of "deck"
     for (let i = 0; i < suits.length; i++) {
         for (let j = 0; j < cards.length; j++) {
             deck.push(`${cards[j]}-${suits[i]}`)
         }
     }
-    console.log(deck)
+    // console.log(deck)
 }
 
 buildDeck()
+
+function shuffleDeck() {
+    for (let i = 0; i < deck.length; i++) {
+        let j = Math.floor(Math.random() * deck.length);
+        // Math.random() * deck.length will give a random float number between (0 - 52)
+        // Math.floor will round it to an integer
+
+        let swap = deck[i]; // grabbing the first element(deck[i])
+
+        deck[i] = deck[j]; 
+        deck[j] = swap; 
+        // replacing the first element(deck[i]) with the second element(deck[j])
+    }
+    console.log(deck)
+}
+
+shuffleDeck()
+

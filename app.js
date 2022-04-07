@@ -33,18 +33,34 @@
 
 */
 //---------------------------------------------------------------------------------
-// ****** GLOBAL VARIABLES ******
+// ****** DOM VARIABLES ******
 //---------------------------------------------------------------------------------
 
-var player = 0;
-var dealer = 0;
-var playerScore = 0;
-var dealerScore = 0;
+let deal = document.querySelector('.deal-btn')
+let hit = document.querySelector('.hit-btn')
+let stand = document.querySelector('.stand-btn')
+let newGame = document.querySelector('.new-btn')
+let dCards = document.querySelector('#dealer_cards')
+let pCards = document.querySelector('#player_cards')
 
-var deck = [];
+//---------------------------------------------------------------------------------
+// ****** GAME VARIABLES ******
+//---------------------------------------------------------------------------------
 
-var onHit = true; // allow the player to hit while player <= 21
-var blackJack = false; 
+let gameStart = false;
+let playerScore = 0;
+let dealerScore = 0;
+let deck = [];
+
+//---------------------------------------------------------------------------------
+// ****** BUTTONS ******
+//---------------------------------------------------------------------------------
+
+// deal.addEventListener('click', () => {
+//     buildDeck();
+//     shuffleDeck(deck);
+//     dCards.innerHTML = deck;
+// })
 
 //---------------------------------------------------------------------------------
 // ****** FUNCTIONS ******
@@ -52,20 +68,21 @@ var blackJack = false;
 
 function buildDeck() {
     let cards = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
-    let suits = ["C", "D", "H", "S"];
-    
+    let suits = ["♠", "♣", "♥", "♦"];
+    let deck = [];
+
     // iterates through each card and suit and pushed into the empty array of "deck"
     for (let i = 0; i < suits.length; i++) {
         for (let j = 0; j < cards.length; j++) {
-            deck.push(`${cards[j]}-${suits[i]}`)
+            deck.push(`${cards[j]}${suits[i]}`)
         }
     }
-    // console.log(deck)
+    // console.log(deck);
 }
 
-buildDeck()
+// buildDeck()
 
-function shuffleDeck() {
+function shuffleDeck(deck) {
     for (let i = 0; i < deck.length; i++) {
         let j = Math.floor(Math.random() * deck.length);
         // Math.random() * deck.length will give a random float number between (0 - 52)
@@ -77,8 +94,8 @@ function shuffleDeck() {
         deck[j] = swap; 
         // replacing the first element(deck[i]) with the second element(deck[j])
     }
-    console.log(deck)
+    // console.log(deck)
 }
 
-shuffleDeck()
+// shuffleDeck()
 

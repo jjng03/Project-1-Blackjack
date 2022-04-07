@@ -11,3 +11,11 @@ Blackjack is a player vs dealer card game.  The objective of the game is to beat
 
 # Wireframe
 ![Blackjack](https://user-images.githubusercontent.com/101623317/162050424-932acd0f-df61-4928-804e-a2de384de318.png)
+
+# Stretch goals
+
+1) Create a functional "split" button
+2) Implement a betting system
+
+# Reference
+https://office-watch.com/2021/playing-card-suits-%E2%99%A0%E2%99%A5%E2%99%A6%E2%99%A3-in-word-excel-powerpoint-and-outlook/

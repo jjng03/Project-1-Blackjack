@@ -24,15 +24,10 @@ header {
     margin-bottom: 50px;
 }
 
-main {
-    height: 80vh;
-    flex-direction: row;
-}
-
 .dealer,
 .player {
     height: 300px;
-    width: 550px;
+    width: 650px;
     margin: 20px 25px;
     padding: 10px;
     border-radius: 5px;

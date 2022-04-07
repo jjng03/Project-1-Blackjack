@@ -17,10 +17,11 @@
 -deal - deal cards when it's clicked
 -new game - reset game including scoreboard 
 -hit - pulling a card from the array
--stay - keep current cards and let dealer hit 
+-stand - keep current cards and let dealer hit 
 
 4) Functions 
 -startGame() - Main function will load the entire game
+-build a deck
 -add up the values when the cards are dealt
 -pulling random card from the array / randomize player and dealer cards
 
@@ -30,3 +31,33 @@
 
 
 */
+
+// ****** GLOBAL VARIABLES ******
+
+var player = 0;
+var dealer = 0;
+var playerScore = 0;
+var dealerScore = 0;
+
+var hidden;
+var deck;
+
+var onHit = true; // allow the player to hit while player <= 21
+var blackJack = false; 
+
+// ****** FUNCTIONS ******
+
+function buildDeck() {
+    let cards = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
+    let suits = ["C", "D", "H", "S"];
+    deck = [];
+
+    for (let i = 0; i < suits.length; i++) {
+        for (let j = 0; j < cards.length; j++) {
+            deck.push(`${cards[j]}-${suits[i]}`)
+        }
+    }
+    console.log(deck)
+}
+
+buildDeck()

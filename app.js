@@ -37,10 +37,10 @@
 let dText = document.querySelector('h2');
 let pText = document.querySelector('h3');
 let text = document.querySelector('.text');
-let deal = document.querySelector('#deal_btn');
-let hit = document.querySelector('#hit_btn');
-let stand = document.querySelector('#stand_btn');
-let newGame = document.querySelector('#new_btn');
+let dealBtn = document.querySelector('#deal_btn');
+let hitBtn = document.querySelector('#hit_btn');
+let standBtn = document.querySelector('#stand_btn');
+let newGameBtn = document.querySelector('#new_btn');
 let dCards = document.querySelector('#dealer_cards');
 let pCards = document.querySelector('#player_cards');
 // console.log(deal)
@@ -52,7 +52,7 @@ let pCards = document.querySelector('#player_cards');
 // let gameStart = false;
 let onHit = true;
 let dealerSum = 0;
-let PlayerSum = 0;
+let playerSum = 0;
 let dealerAceCount = 0;
 let playerAceCount = 0;
 let cards = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
@@ -63,31 +63,34 @@ let hand = 0;
 let dealerCards = [];
 let playerCards = [];
 let currentDealerHand = null;
+let currentDealerHand1 = null;
 let currentPlayerHand = null;
+let currentPlayerHand1 = null;
 
 //---------------------------------------------------------------------------------
 // ****** BUTTONS ******
 //---------------------------------------------------------------------------------
 
-deal.addEventListener('click', () => {
-    // buildDeck();
-    // shuffleDeck(deck);
-    // distributeCards(deck);
+// Start the game
+dealBtn.addEventListener('click', () => {
     getCard();
-    dCards.innerHTML = currentDealerHand.card
-    dText.innerHTML = ("Dealer (sum)");
-    // pCards.innerHTML = 
-    // pText.innerHTML = ();
+    dCards.innerHTML = currentDealerHand.card + currentDealerHand.suit + " " + currentDealerHand1.card + currentDealerHand1.suit;
+    pCards.innerHTML = currentPlayerHand.card + currentPlayerHand.suit + " " + currentPlayerHand1.card + currentPlayerHand1.suit;
     text.innerHTML = ("Cards are dealt!");
-    // startGame();
+    dealerSum = currentDealerHand.value + currentDealerHand1.value;
+    playerSum = currentPlayerHand.value + currentPlayerHand1.value;
+    dText.innerHTML = (`Dealer has: ${dealerSum}`);
+    pText.innerHTML = (`Player has: ${playerSum}`);
 })
 
-newGame.addEventListener('click', () => {
+// Reset the game when button is clicked
+newGameBtn.addEventListener('click', () => {
     dCards.innerHTML = "";
     pCards.innerHTML = "";
     dText.innerHTML = "Dealer";
     pText.innerHTML = "Player";
     text.innerHTML = 'Press "Deal" to play';
+    dealerSum = 0;
 })
 
 //---------------------------------------------------------------------------------
@@ -131,9 +134,11 @@ function shuffleDeck(deck) {
 // shuffleDeck(deck)
 
 function distributeCards(deck) {
+    // adds the first 26 cards into the "dealerCards" array
     for (let i = 0; i < 26; i++) {
         dealerCards.push(deck[i])
     }
+    // adds the last 26 cards into the "playerCards" array
     for (let i = 26; i < 52; i++) {
         playerCards.push(deck[i])
     }
@@ -142,10 +147,15 @@ function distributeCards(deck) {
 }
 
 function getCard() {
-    console.log(hand)
+    // console.log(hand)
+    // grabbing the objects of the dealerCards array
     currentDealerHand = dealerCards[hand]
     currentPlayerHand = playerCards[hand]
-    hand++
+
+    hand++ // incrementing the objects inside the array
+
+    currentDealerHand1 = dealerCards[hand]
+    currentPlayerHand1 = playerCards[hand]
 }
 
-// console.log(getCard())
+

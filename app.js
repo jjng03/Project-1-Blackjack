@@ -53,22 +53,33 @@ let pCards = document.querySelector('#player_cards');
 let onHit = true;
 let dealerSum = 0;
 let PlayerSum = 0;
+let dealerAceCount = 0;
+let playerAceCount = 0;
 let cards = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
-let suits = ["♠", "♣", "♥", "♦"];
+let suits = ["C", "D", "H", "S"];
 let deck = [];
+let values = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10 , 10, 10];
+let hand = 0;
+let dealerCards = [];
+let playerCards = [];
+let currentDealerHand = null;
+let currentPlayerHand = null;
 
 //---------------------------------------------------------------------------------
 // ****** BUTTONS ******
 //---------------------------------------------------------------------------------
 
 deal.addEventListener('click', () => {
-    buildDeck();
-    shuffleDeck(deck);
-    dCards.innerHTML = [getCard() + " " + getCard()];
+    // buildDeck();
+    // shuffleDeck(deck);
+    // distributeCards(deck);
+    getCard();
+    dCards.innerHTML = currentDealerHand.card
     dText.innerHTML = ("Dealer (sum)");
-    pCards.innerHTML = [getCard() + " " + getCard()];
-    pText.innerHTML = ("Player (sum)");
+    // pCards.innerHTML = 
+    // pText.innerHTML = ();
     text.innerHTML = ("Cards are dealt!");
+    // startGame();
 })
 
 newGame.addEventListener('click', () => {
@@ -76,20 +87,28 @@ newGame.addEventListener('click', () => {
     pCards.innerHTML = "";
     dText.innerHTML = "Dealer";
     pText.innerHTML = "Player";
+    text.innerHTML = 'Press "Deal" to play';
 })
 
 //---------------------------------------------------------------------------------
 // ****** FUNCTIONS ******
 //---------------------------------------------------------------------------------
+buildDeck()
+shuffleDeck(deck)
+distributeCards(deck)
 
 function buildDeck() {
     // iterates through each card and suit and pushed into the empty array of "deck"
     for (let i = 0; i < suits.length; i++) {
         for (let j = 0; j < cards.length; j++) {
-            deck.push(`${cards[j]}${suits[i]}`)
+            deck.push(
+                {card: cards[j],
+                suit: suits[i],
+                value: values[j]}
+            )
         }
     }
-    return deck;
+    console.log(deck);
 }
 
 // buildDeck()
@@ -111,10 +130,22 @@ function shuffleDeck(deck) {
 
 // shuffleDeck(deck)
 
-function getCard() {
-    return deck.shift(); // grabs the first element of the array ("deck")
+function distributeCards(deck) {
+    for (let i = 0; i < 26; i++) {
+        dealerCards.push(deck[i])
+    }
+    for (let i = 26; i < 52; i++) {
+        playerCards.push(deck[i])
+    }
+    console.log(dealerCards)
+    console.log(playerCards)
 }
 
-function getSum(playerSum, dealerSum) {
-    
+function getCard() {
+    console.log(hand)
+    currentDealerHand = dealerCards[hand]
+    currentPlayerHand = playerCards[hand]
+    hand++
 }
+
+// console.log(getCard())

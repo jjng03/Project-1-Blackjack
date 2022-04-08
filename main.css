@@ -29,7 +29,7 @@ header {
 .player {
     height: 300px;
     width: 650px;
-    margin: 20px 25px;
+    margin: 20px;
     padding: 10px;
     border-radius: 5px;
     border: solid 1px black;

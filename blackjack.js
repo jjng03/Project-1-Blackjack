@@ -20,7 +20,8 @@ let hitBtn = document.getElementById("hit_btn");
 let dealBtn = document.getElementById("deal_btn")
 let dealerText = document.getElementById("dealer_cards")
 let playerText = document.getElementById("player_cards")
-let x = "";
+let nextPlayerCard = "";
+let nextDealerCard = "";
 // ----------------------------------------------------------------
 // ****************** BUTTONS ******************
 // ----------------------------------------------------------------
@@ -34,16 +35,25 @@ dealBtn.addEventListener("click", () => {
   shuffleDeck(deck);
   distributeCards(deck);
 
-  dealerInPlayHand = [dealerCards.shift(), dealerCards.shift()];
+  dealerInPlayHand = [dealerCards.shift(), dealerCards.shift()]; // removes the first element/object from dealerCards and added into the array of dealerInPlayHand
   playerInPlayHand = [playerCards.shift(), playerCards.shift()];
-  dealerText.innerHTML = (dealerInPlayHand[0].card + dealerInPlayHand[0].suit + " " + dealerInPlayHand[1].card + dealerInPlayHand[1].suit)
+
+  dealerText.innerHTML = (dealerInPlayHand[0].card + dealerInPlayHand[0].suit + " " + dealerInPlayHand[1].card + dealerInPlayHand[1].suit) // displaying the cards for each player and dealer
   playerText.innerHTML = (playerInPlayHand[0].card + playerInPlayHand[0].suit + " " + playerInPlayHand[1].card + playerInPlayHand[1].suit)
+
   console.log(dealerInPlayHand)
   console.log(playerInPlayHand)
 });
 
 hitBtn.addEventListener('click', () => {
-  playerInPlayHand.push(playerCards.shift());
+  playerInPlayHand.push(playerCards.shift()); // adds the next element/object from playerCards to playerInPlayHand array
+  for (let i = 0; i < playerInPlayHand.length; i++) {
+    // iterates through each object in the array playerInPlayHand
+
+    nextPlayerCard += playerInPlayHand[i].card + playerInPlayHand[i].suit + " "; // take the next card and create a new string for nextPlayerCard
+    playerText.innerHTML = nextPlayerCard; // displays the next card onto the board
+  }
+  nextPlayerCard = ""; // after the "for loop", reset to an empty string so it doesn't repeat the previous cards
   console.log(playerInPlayHand)
 })
 
@@ -51,7 +61,7 @@ hitBtn.addEventListener('click', () => {
 // ****************** FUNCTIONS ******************
 // ----------------------------------------------------------------
 function buildDeck() {
-    // iterates through each card and suit and pushed into the empty array of "deck"
+    // iterates through each card and suit and creating objects that's pushed into the empty array of "deck"
     for (let i = 0; i < suits.length; i++) {
         for (let j = 0; j < cards.length; j++) {
             deck.push(

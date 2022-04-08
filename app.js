@@ -56,16 +56,16 @@ let playerSum = 0;
 let dealerAceCount = 0;
 let playerAceCount = 0;
 let cards = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
-let suits = ["C", "D", "H", "S"];
-let deck = [];
+let suits = ["♣", "♦", "♥", "♠"];
 let values = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10 , 10, 10];
+let deck = [];
 let hand = 0;
 let dealerCards = [];
 let playerCards = [];
-let currentDealerHand = null;
-let currentDealerHand1 = null;
-let currentPlayerHand = null;
-let currentPlayerHand1 = null;
+let currentDealerHand = [];
+// let currentDealerHand1 = [];
+let currentPlayerHand = [];
+// let currentPlayerHand1 = [];
 
 //---------------------------------------------------------------------------------
 // ****** BUTTONS ******
@@ -74,8 +74,8 @@ let currentPlayerHand1 = null;
 // Start the game
 dealBtn.addEventListener('click', () => {
     getCard();
-    dCards.innerHTML = currentDealerHand.card + currentDealerHand.suit + " " + currentDealerHand1.card + currentDealerHand1.suit;
-    pCards.innerHTML = currentPlayerHand.card + currentPlayerHand.suit + " " + currentPlayerHand1.card + currentPlayerHand1.suit;
+    dCards.innerHTML = currentDealerHand.card + currentDealerHand.suit + "  " + currentDealerHand1.card + currentDealerHand1.suit;
+    pCards.innerHTML = currentPlayerHand.card + currentPlayerHand.suit + "  " + currentPlayerHand1.card + currentPlayerHand1.suit;
     text.innerHTML = ("Cards are dealt!");
     dealerSum = currentDealerHand.value + currentDealerHand1.value;
     playerSum = currentPlayerHand.value + currentPlayerHand1.value;
@@ -158,4 +158,8 @@ function getCard() {
     currentPlayerHand1 = playerCards[hand]
 }
 
+function hitMe() {
+    if (playerSum < 21) {
 
+    }
+}

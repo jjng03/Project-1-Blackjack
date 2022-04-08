@@ -34,20 +34,25 @@
 //---------------------------------------------------------------------------------
 // ****** DOM VARIABLES ******
 //---------------------------------------------------------------------------------
-
-let deal = document.querySelector('#deal_btn')
-let hit = document.querySelector('#hit_btn')
-let stand = document.querySelector('#stand_btn')
-let newGame = document.querySelector('#new_btn')
-let dCards = document.querySelector('#dealer_cards')
-let pCards = document.querySelector('#player_cards')
+let dText = document.querySelector('h2');
+let pText = document.querySelector('h3');
+let text = document.querySelector('.text');
+let deal = document.querySelector('#deal_btn');
+let hit = document.querySelector('#hit_btn');
+let stand = document.querySelector('#stand_btn');
+let newGame = document.querySelector('#new_btn');
+let dCards = document.querySelector('#dealer_cards');
+let pCards = document.querySelector('#player_cards');
 // console.log(deal)
 
 //---------------------------------------------------------------------------------
 // ****** GAME VARIABLES ******
 //---------------------------------------------------------------------------------
 
-let gameStart = false;
+// let gameStart = false;
+let onHit = true;
+let dealerSum = 0;
+let PlayerSum = 0;
 let cards = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
 let suits = ["♠", "♣", "♥", "♦"];
 let deck = [];
@@ -57,10 +62,20 @@ let deck = [];
 //---------------------------------------------------------------------------------
 
 deal.addEventListener('click', () => {
-    deck = buildDeck();
+    buildDeck();
     shuffleDeck(deck);
     dCards.innerHTML = [getCard() + " " + getCard()];
+    dText.innerHTML = ("Dealer (sum)");
     pCards.innerHTML = [getCard() + " " + getCard()];
+    pText.innerHTML = ("Player (sum)");
+    text.innerHTML = ("Cards are dealt!");
+})
+
+newGame.addEventListener('click', () => {
+    dCards.innerHTML = "";
+    pCards.innerHTML = "";
+    dText.innerHTML = "Dealer";
+    pText.innerHTML = "Player";
 })
 
 //---------------------------------------------------------------------------------
@@ -97,5 +112,9 @@ function shuffleDeck(deck) {
 // shuffleDeck(deck)
 
 function getCard() {
-    return deck.shift(); // gets the first element of the array ("deck")
+    return deck.shift(); // grabs the first element of the array ("deck")
+}
+
+function getSum(playerSum, dealerSum) {
+    
 }

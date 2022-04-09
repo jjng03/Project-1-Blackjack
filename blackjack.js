@@ -13,8 +13,6 @@ let dealerSum = 0;
 let playerSum = 0;
 let dealerCards = [];
 let playerCards = [];
-let dealerInPlayHand = [];
-let playerInPlayHand = [];
 let nextPlayerCard = "";
 let nextDealerCard = "";
 let onHit = true;
@@ -36,38 +34,38 @@ let playerText1 = document.querySelector("h3");
 // ----------------------------------------------------------------
 
 dealBtn.addEventListener("click", () => {
-  gameStart = true;
-  gameOver = false;
-  playerWin = false;
+  // gameStart = true;
+  // gameOver = false;
+  // playerWin = false;
 
   buildDeck();
   shuffleDeck(deck);
-  distributeCards(deck);
+  // distributeCards(deck);
   
-  dealerInPlayHand = [dealerCards.shift(), dealerCards.shift()]; // removes the first element/object from dealerCards and added into the array of dealerInPlayHand
-  playerInPlayHand = [playerCards.shift(), playerCards.shift()];
+  dealerCards = [deck.pop(), deck.pop()]; // removes the last element of the object from dealerCards and added into the array of dealerCards
+  playerCards = [deck.pop(), deck.pop()];
 
   getSum();
 
-  dealerText.innerHTML = (dealerInPlayHand[0].card + dealerInPlayHand[0].suit + " " + dealerInPlayHand[1].card + dealerInPlayHand[1].suit) // displaying the cards for each player and dealer
-  playerText.innerHTML = (playerInPlayHand[0].card + playerInPlayHand[0].suit + " " + playerInPlayHand[1].card + playerInPlayHand[1].suit)
+  dealerText.innerHTML = (dealerCards[0].card + dealerCards[0].suit + " " + dealerCards[1].card + dealerCards[1].suit) // displaying the cards for each player and dealer
+  playerText.innerHTML = (playerCards[0].card + playerCards[0].suit + " " + playerCards[1].card + playerCards[1].suit)
   
-  console.log(dealerInPlayHand)
-  console.log(playerInPlayHand)
+  console.log(dealerCards)
+  console.log(playerCards)
 });
 
 hitBtn.addEventListener('click', () => {
-  playerInPlayHand.push(playerCards.shift()); // adds the next element/object from playerCards to playerInPlayHand array
-  for (let i = 0; i < playerInPlayHand.length; i++) {
+  playerCards.push(deck.pop()); // adds the next element/object from playerCards to playerInPlayHand array
+  for (let i = 0; i < playerCards.length; i++) {
     // iterates through each object in the array playerInPlayHand
 
-    nextPlayerCard += playerInPlayHand[i].card + playerInPlayHand[i].suit + " "; // take the next card and create a new string for nextPlayerCard
+    nextPlayerCard += playerCards[i].card + playerCards[i].suit + " "; // take the next card and create a new string for nextPlayerCard
     playerText.innerHTML = nextPlayerCard; // displays the next card onto the board
   }
   nextPlayerCard = ""; // after the "for loop", reset to an empty string so it doesn't repeat the previous cards
 
   getSum();
-  console.log(playerInPlayHand)
+  console.log(playerCards)
 })
 
 // ----------------------------------------------------------------
@@ -106,57 +104,21 @@ function shuffleDeck(deck) {
 
 // shuffleDeck(deck)
 
-function distributeCards(deck) {
-    // adds the first 26 cards into the "dealerCards" array
-    for (let i = 0; i < 26; i++) {
-        dealerCards.push(deck[i])
-    }
-    // adds the last 26 cards into the "playerCards" array
-    for (let i = 26; i < 52; i++) {
-        playerCards.push(deck[i])
-    }
-    console.log(dealerCards)
-    console.log(playerCards)
-}
-
 function getSum() {
-  for (let i = 0; i < dealerInPlayHand.length; i++) {
-    dealerSum += dealerInPlayHand[i].value
+  for (let i = 0; i < dealerCards.length; i++) {
+    dealerSum += dealerCards[i].value
   }
   dealerText1.innerHTML = (`Dealer has: ${dealerSum}`)
 
-  for (let i = 0; i < playerInPlayHand.length; i++) {
-    playerSum += playerInPlayHand[i].value 
+  for (let i = 0; i < playerCards.length; i++) {
+    playerSum += playerCards[i].value 
   }
   playerText1.innerHTML = (`Player has: ${playerSum}`)
   dealerSum = 0;
   playerSum = 0;
 }
 
-// function gameStatus() {
-//   if (gameStart === false) {
-//     return;
-//   }
+// function stand() {
+//   onHit = false;
 
-//   // displaying current cards for dealer and player
-//   for (let i = 0; i < dealerCards.length; i++) {
-  
-//   }
-//   console.log(currentDealerCards)
-//   for (let i = 0; i < playerCards.length; i++) {
-//     //something innerHtml
-//     //display currentBoardLayout
-//   }
-
-//   //update scores...
-
-//   if (gameOver) {
-//     if (playerWin) {
-//       //display "YOU WIN"
-//     } else {
-//       //display "DEALER WINS"
-//     }
-//   }
 // }
-
-// // gameStatus();

@@ -38,14 +38,15 @@ dealBtn.addEventListener("click", () => {
   playerText.querySelectorAll("img").forEach((i) => i.remove());
 
   mainText.innerHTML = ('Cards are dealt!')
+  dealerText1.innerHTML = ('Dealer has: ');
   deck = [];
-  buildDeck();
-  shuffleDeck(deck);
-  startGame();
   onHit = true;
   playerAceCount = 0;
   dealerAceCount = 0;
-  dealerText1.innerHTML = ('Dealer has: ');
+
+  buildDeck();
+  shuffleDeck(deck);
+  startGame();
 });
 
 
@@ -96,6 +97,17 @@ function startGame() {
     playerText.append(cardImg);
   }
   
+  if (playerCards[0].value + playerCards[1].value === 21) {
+    mainText.innerHTML = ("Player BLACKJACK")
+    dealerText1.innerHTML = (`Dealer has: ${dealerSum}`);
+    cardImg = document.createElement("img");
+    cardImg.src = "./cards/" + dealerCards[0].card + dealerCards[0].suit + ".png"; // taking the actual card of the "back card"
+    dealerText.removeChild(dealerText.children[0]); // removing the first image (which is the "back card") from the dealer class in html
+    dealerText.prepend(cardImg); // adding the actual card at [index 0] of dealer class html (basically turning the back card face up)
+    onHit = false;
+    return;
+  }
+
   console.log(dealerCards)
   console.log(playerCards)
 
@@ -181,9 +193,11 @@ function hitMe() {
   
   getSum();
   
+  // player winning conditions
   if (playerSum > 21) {
     onHit = false;
     mainText.innerHTML = ("Player Bust")
+    return;
   } 
   console.log(playerCards);
 }
@@ -191,15 +205,19 @@ function hitMe() {
 
 function stand() {
   cardImg = document.createElement("img");
-  cardImg.src = "./cards/" + dealerCards[0].card + dealerCards[0].suit + ".png"; // taking the actual card of the "back card"
-  dealerText.removeChild(dealerText.children[0]); // removing the first image (which is the "back card") from the dealer class in html
-  dealerText.prepend(cardImg); // adding the actual card at [index 0] of dealer class html (basically turning the back card face up)
+  cardImg.src = "./cards/" + dealerCards[0].card + dealerCards[0].suit + ".png"; 
+  dealerText.removeChild(dealerText.children[0]); 
+  dealerText.prepend(cardImg); 
+
+  if (playerSum >= 21) {
+    // prevents the stand button to add another card for the dealer
+    return;
+  }
 
   while (dealerSum < 17) {
     // if (dealerSum < playerSum) {
       // draw a new card for dealer
       dealerCards.push(deck.pop());
-      // calculate the sum of dealer hand
       cardImg = document.createElement("img");
       cardImg.src = "./cards/" + dealerCards[dealerCards.length - 1].card + dealerCards[dealerCards.length - 1].suit + ".png";
       dealerText.append(cardImg);
@@ -222,7 +240,7 @@ function stand() {
     else if (dealerSum === playerSum && dealerSum >= 17 && dealerSum < 22) {
       mainText.innerHTML = ("Push");
     } 
-    else if (playerSum > dealerSum && dealerSum >= 17) {
+    else if (playerSum > dealerSum && playerSum < 22 && dealerSum >= 17) {
       // onHit = false;
       mainText.innerHTML = ("Player wins")
     }

@@ -4,7 +4,7 @@
 
 let cards = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
 let suits = ["♣", "♦", "♥", "♠"];
-let values = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10 , 10, 10];
+let values = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10 , 10, 10];
 let deck = [];
 // let gameStart = false;
 // let gameOver = false;
@@ -17,7 +17,6 @@ let playerCards = [];
 let nextPlayerCard = "";
 let nextDealerCard = "";
 let onHit = true;
-let dealerStillPlay = true;
 
 // ----------------------------------------------------------------
 // ****************** DOM VARIABLES ******************
@@ -43,7 +42,6 @@ dealBtn.addEventListener("click", () => {
   buildDeck();
   shuffleDeck(deck);
   startGame();
-  dealerStillPlay = true;
   onHit = true;
 });
 
@@ -80,6 +78,7 @@ function startGame() {
   
   console.log(dealerCards)
   console.log(playerCards)
+
 }
 
 function buildDeck() {
@@ -150,25 +149,33 @@ function hitMe() {
   if (playerSum > 21) {
     onHit = false;
     mainText.innerHTML = ("Player Bust")
-  }
+  } 
+  // else if (playerSum > dealerSum && dealerSum >= 17) {
+  //   onHit = false;
+  //   mainText.innerHTML = ("PLAYER WINS!")
+  // }
   console.log(playerCards);
 }
 
 
 function stand() {
-  while (dealerStillPlay) {
-    if (dealerSum < playerSum) {
+  while (dealerSum < 17) {
+    // if (dealerSum < playerSum) {
       // draw a new card for dealer
       dealerCards.push(deck.pop());
       // calculate the sum of dealer hand
-      getSum();
-    }
-
-    // add to html
-    dealerText.innerHTML +=
+      dealerText.innerHTML +=
       dealerCards[dealerCards.length - 1].card +
       dealerCards[dealerCards.length - 1].suit +
       " ";
+      getSum();
+  }
+
+    // add to html
+    // dealerText.innerHTML +=
+    //   dealerCards[dealerCards.length - 1].card +
+    //   dealerCards[dealerCards.length - 1].suit +
+    //   " ";
 
     console.log(dealerCards);
     // console.log(playerSum);
@@ -176,23 +183,24 @@ function stand() {
 
     // if dealer has a higher sum than player and is not over 21, DEALER WINS
     if (dealerSum > playerSum && dealerSum < 22) {
-      mainText.innerHTML = ("DEALER WINS!!!");
-      dealerStillPlay = false;
+      mainText.innerHTML = ("Dealer wins");
     }
     // if dealer goes over 21, DEALER BUSTS
-    if (dealerSum > 21) {
-      mainText.innerHTML = ("DEALER BUSTS");
-      dealerStillPlay = false;
+    else if (dealerSum > 21) {
+      mainText.innerHTML = ("Dealer bust");
     }
-    // if dealer and player have same sum, its a TIE
-    if (dealerSum === playerSum) {
-      mainText.innerHTML = ("its a tie...");
-      dealerStillPlay = false;
+    // if dealer and player have same sum, its a TIE (dealer must hit if less than 17)
+    else if (dealerSum === playerSum && dealerSum >= 17 && dealerSum < 22) {
+      mainText.innerHTML = ("Push");
+    } 
+    else if (playerSum > dealerSum && dealerSum >= 17) {
+      // onHit = false;
+      mainText.innerHTML = ("Player wins!")
     }
-  }
 }
 
 
-function checkAce() {
-  if ()
-}
+
+// function checkAce() {
+//   if ()
+// }

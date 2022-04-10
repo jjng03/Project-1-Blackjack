@@ -59,3 +59,11 @@ button {
     padding: 10px;
     border-radius: 10px;
 }
+
+#dealer_cards img,
+#player_cards img {
+    height: 140px;
+    width: 100px;
+    margin: 1px;
+    margin-top: -40px;
+}

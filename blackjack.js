@@ -7,19 +7,14 @@ let cards = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"];
 let suits = ["C", "D", "H", "S"];
 let values = [2, 3, 4, 5, 6, 7, 8, 9, 10, 10 , 10, 10, 11];
 let deck = [];
-// let gameStart = false;
-// let gameOver = false;
-// let dealerWin = false;
-// let playerWin = false;
 let dealerSum = 0;
 let playerSum = 0;
 let dealerCards = [];
 let playerCards = [];
 let playerAceCount = 0;
 let dealerAceCount = 0;
-let nextPlayerCard = "";
-let nextDealerCard = "";
 let onHit = true;
+let cardImg = document.createElement("img");
 
 // ----------------------------------------------------------------
 // ****************** DOM VARIABLES ******************
@@ -40,6 +35,10 @@ let mainText = document.querySelector(".text")
 // ----------------------------------------------------------------
 
 dealBtn.addEventListener("click", () => {
+  // going through each image and removing the image
+  dealerText.querySelectorAll("img").forEach((i) => i.remove());
+  playerText.querySelectorAll("img").forEach((i) => i.remove());
+
   mainText.innerHTML = ('Cards are dealt!')
   deck = [];
   buildDeck();
@@ -78,8 +77,19 @@ function startGame() {
 
   getSum();
   
-  dealerText.innerHTML = (dealerCards[0].card + dealerCards[0].suit + " " + dealerCards[1].card + dealerCards[1].suit) // displaying the cards for each player and dealer
-  playerText.innerHTML = (playerCards[0].card + playerCards[0].suit + " " + playerCards[1].card + playerCards[1].suit)
+  // shows dealer cards
+  for (let i = 0; i < dealerCards.length; i++) {
+    cardImg = document.createElement("img");
+    cardImg.src = "./cards/" + dealerCards[i].card + dealerCards[i].suit + ".png";
+    dealerText.append(cardImg);
+  }
+
+  // shows player cards
+  for (let i = 0; i < playerCards.length; i++) {
+    cardImg = document.createElement("img");
+    cardImg.src = "./cards/" + playerCards[i].card + playerCards[i].suit + ".png";
+    playerText.append(cardImg);
+  }
   
   console.log(dealerCards)
   console.log(playerCards)
@@ -161,13 +171,9 @@ function hitMe() {
   }
   playerCards.push(deck.pop()); // removes the last element in deck array and add it to playerCards array
 
-  for (let i = 0; i < playerCards.length; i++) {
-    // iterates through each object in the array of playerCards
-
-    nextPlayerCard += playerCards[i].card + playerCards[i].suit + " "; // take the next card and create a new string for nextPlayerCard
-    playerText.innerHTML = nextPlayerCard; // displays the next card onto the board
-  }
-  nextPlayerCard = ""; // after the "for loop", reset to an empty string so it doesn't repeat the previous cards
+  cardImg = document.createElement("img");
+  cardImg.src = "./cards/" + playerCards[playerCards.length - 1].card + playerCards[playerCards.length - 1].suit + ".png";
+  playerText.append(cardImg);
   
   getSum();
   
@@ -185,10 +191,9 @@ function stand() {
       // draw a new card for dealer
       dealerCards.push(deck.pop());
       // calculate the sum of dealer hand
-      dealerText.innerHTML +=
-      dealerCards[dealerCards.length - 1].card +
-      dealerCards[dealerCards.length - 1].suit +
-      " ";
+      cardImg = document.createElement("img");
+      cardImg.src = "./cards/" + dealerCards[dealerCards.length - 1].card + dealerCards[dealerCards.length - 1].suit + ".png";
+      dealerText.append(cardImg);
       getSum();
   }
     console.log(dealerCards);

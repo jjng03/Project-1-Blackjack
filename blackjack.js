@@ -24,6 +24,7 @@ let onHit = true;
 let newGameBtn = document.getElementById("new_btn");
 let hitBtn = document.getElementById("hit_btn");
 let dealBtn = document.getElementById("deal_btn");
+let standBtn = document.getElementById("stand_btn");
 let dealerText = document.getElementById("dealer_cards");
 let playerText = document.getElementById("player_cards");
 let dealerText1 = document.querySelector("h2");
@@ -40,7 +41,6 @@ dealBtn.addEventListener("click", () => {
 
   buildDeck();
   shuffleDeck(deck);
-  // distributeCards(deck);
   
   dealerCards = [deck.pop(), deck.pop()]; // removes the last element of the object from dealerCards and added into the array of dealerCards
   playerCards = [deck.pop(), deck.pop()];
@@ -54,19 +54,16 @@ dealBtn.addEventListener("click", () => {
   console.log(playerCards)
 });
 
+
 hitBtn.addEventListener('click', () => {
-  playerCards.push(deck.pop()); // adds the next element/object from playerCards to playerInPlayHand array
-  for (let i = 0; i < playerCards.length; i++) {
-    // iterates through each object in the array playerInPlayHand
-
-    nextPlayerCard += playerCards[i].card + playerCards[i].suit + " "; // take the next card and create a new string for nextPlayerCard
-    playerText.innerHTML = nextPlayerCard; // displays the next card onto the board
-  }
-  nextPlayerCard = ""; // after the "for loop", reset to an empty string so it doesn't repeat the previous cards
-
-  getSum();
-  console.log(playerCards)
+  hitMe();
 })
+
+
+standBtn.addEventListener('click', () => {
+  stand();
+})
+
 
 // ----------------------------------------------------------------
 // ****************** FUNCTIONS ******************
@@ -85,7 +82,6 @@ function buildDeck() {
     return deck;
 }
 
-// buildDeck()
 
 function shuffleDeck(deck) {
     for (let i = 0; i < deck.length; i++) {
@@ -102,11 +98,12 @@ function shuffleDeck(deck) {
     console.log(deck)
 }
 
-// shuffleDeck(deck)
 
 function getSum() {
   for (let i = 0; i < dealerCards.length; i++) {
+    // iterates through dealerCards array
     dealerSum += dealerCards[i].value
+    // adds the card values (dealerSum = dealerSum + dealerCards[i].value)
   }
   dealerText1.innerHTML = (`Dealer has: ${dealerSum}`)
 
@@ -114,11 +111,37 @@ function getSum() {
     playerSum += playerCards[i].value 
   }
   playerText1.innerHTML = (`Player has: ${playerSum}`)
-  dealerSum = 0;
+  dealerSum = 0; 
   playerSum = 0;
+  // resets the sum so it does not add the values of previous cards that were already added
 }
 
-// function stand() {
-//   onHit = false;
 
-// }
+function hitMe() {
+  onHit = true;
+  playerCards.push(deck.pop()); // removes the last element in deck array and add it to playerCards array
+  for (let i = 0; i < playerCards.length; i++) {
+    // iterates through each object in the array of playerCards
+
+    nextPlayerCard += playerCards[i].card + playerCards[i].suit + " "; // take the next card and create a new string for nextPlayerCard
+    playerText.innerHTML = nextPlayerCard; // displays the next card onto the board
+  }
+  nextPlayerCard = ""; // after the "for loop", reset to an empty string so it doesn't repeat the previous cards
+
+  getSum();
+  console.log(playerCards)
+}
+
+function stand() {
+  onHit = false;
+
+  while (dealerSum < 17) {
+    dealerCards.push(deck.pop())
+    getSum();
+    for (let i = 0; i < dealerCards.length; i++) {
+      nextDealerCard += dealerCards[i].card + dealerCards[i].suit + " ";
+      dealerText.innerHTML = nextDealerCard;
+    }
+    nextDealerCard = "";
+  }
+}

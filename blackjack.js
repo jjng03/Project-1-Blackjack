@@ -1,9 +1,10 @@
 // ----------------------------------------------------------------
 // ****************** GLOBAL VARIABLES ******************
 // ----------------------------------------------------------------
+
 let cards = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
 let suits = ["♣", "♦", "♥", "♠"];
-let values = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10 , 10, 10];
+let values = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10 , 10, 10];
 let deck = [];
 // let gameStart = false;
 // let gameOver = false;
@@ -16,6 +17,7 @@ let playerCards = [];
 let nextPlayerCard = "";
 let nextDealerCard = "";
 let onHit = true;
+let dealerStillPlay = true;
 
 // ----------------------------------------------------------------
 // ****************** DOM VARIABLES ******************
@@ -29,19 +31,45 @@ let dealerText = document.getElementById("dealer_cards");
 let playerText = document.getElementById("player_cards");
 let dealerText1 = document.querySelector("h2");
 let playerText1 = document.querySelector("h3");
+let mainText = document.querySelector(".text")
 
 // ----------------------------------------------------------------
 // ****************** BUTTONS ******************
 // ----------------------------------------------------------------
 
 dealBtn.addEventListener("click", () => {
-  // gameStart = true;
-  // gameOver = false;
-  // playerWin = false;
-
+  mainText.innerHTML = ('Cards are dealt!')
+  deck = [];
   buildDeck();
   shuffleDeck(deck);
-  
+  startGame();
+  dealerStillPlay = true;
+  onHit = true;
+});
+
+
+hitBtn.addEventListener('click', () => {
+  hitMe();
+})
+
+
+standBtn.addEventListener('click', () => {
+  onHit = false;
+  stand();
+})
+
+newGameBtn.addEventListener('click', () => {
+  playerText.innerHTML = "";
+  dealerText.innerHTML = "";
+  playerText1.innerHTML = "Player";
+  dealerText1.innerHTML = "Dealer";
+})
+
+// ----------------------------------------------------------------
+// ****************** FUNCTIONS ******************
+// ----------------------------------------------------------------
+
+function startGame() {
   dealerCards = [deck.pop(), deck.pop()]; // removes the last element of the object from dealerCards and added into the array of dealerCards
   playerCards = [deck.pop(), deck.pop()];
 
@@ -52,22 +80,8 @@ dealBtn.addEventListener("click", () => {
   
   console.log(dealerCards)
   console.log(playerCards)
-});
+}
 
-
-hitBtn.addEventListener('click', () => {
-  hitMe();
-})
-
-
-standBtn.addEventListener('click', () => {
-  stand();
-})
-
-
-// ----------------------------------------------------------------
-// ****************** FUNCTIONS ******************
-// ----------------------------------------------------------------
 function buildDeck() {
     // iterates through each card and suit and creating objects that's pushed into the empty array of "deck"
     for (let i = 0; i < suits.length; i++) {
@@ -100,6 +114,10 @@ function shuffleDeck(deck) {
 
 
 function getSum() {
+  // resets the sum so it does not add the values of previous cards that were already added
+  dealerSum = 0; 
+  playerSum = 0;
+
   for (let i = 0; i < dealerCards.length; i++) {
     // iterates through dealerCards array
     dealerSum += dealerCards[i].value
@@ -111,15 +129,15 @@ function getSum() {
     playerSum += playerCards[i].value 
   }
   playerText1.innerHTML = (`Player has: ${playerSum}`)
-  dealerSum = 0; 
-  playerSum = 0;
-  // resets the sum so it does not add the values of previous cards that were already added
 }
 
 
 function hitMe() {
-  onHit = true;
+  if (onHit === false) {
+    return
+  }
   playerCards.push(deck.pop()); // removes the last element in deck array and add it to playerCards array
+
   for (let i = 0; i < playerCards.length; i++) {
     // iterates through each object in the array of playerCards
 
@@ -129,19 +147,52 @@ function hitMe() {
   nextPlayerCard = ""; // after the "for loop", reset to an empty string so it doesn't repeat the previous cards
 
   getSum();
-  console.log(playerCards)
+  if (playerSum > 21) {
+    onHit = false;
+    mainText.innerHTML = ("Player Bust")
+  }
+  console.log(playerCards);
 }
 
-function stand() {
-  onHit = false;
 
-  while (dealerSum < 17) {
-    dealerCards.push(deck.pop())
-    getSum();
-    for (let i = 0; i < dealerCards.length; i++) {
-      nextDealerCard += dealerCards[i].card + dealerCards[i].suit + " ";
-      dealerText.innerHTML = nextDealerCard;
+function stand() {
+  while (dealerStillPlay) {
+    if (dealerSum < playerSum) {
+      // draw a new card for dealer
+      dealerCards.push(deck.pop());
+      // calculate the sum of dealer hand
+      getSum();
     }
-    nextDealerCard = "";
+
+    // add to html
+    dealerText.innerHTML +=
+      dealerCards[dealerCards.length - 1].card +
+      dealerCards[dealerCards.length - 1].suit +
+      " ";
+
+    console.log(dealerCards);
+    // console.log(playerSum);
+    // console.log(dealerSum);
+
+    // if dealer has a higher sum than player and is not over 21, DEALER WINS
+    if (dealerSum > playerSum && dealerSum < 22) {
+      mainText.innerHTML = ("DEALER WINS!!!");
+      dealerStillPlay = false;
+    }
+    // if dealer goes over 21, DEALER BUSTS
+    if (dealerSum > 21) {
+      mainText.innerHTML = ("DEALER BUSTS");
+      dealerStillPlay = false;
+    }
+    // if dealer and player have same sum, its a TIE
+    if (dealerSum === playerSum) {
+      mainText.innerHTML = ("its a tie...");
+      dealerStillPlay = false;
+    }
   }
+}
+
+
+function checkAce() {
+  if ()
 }

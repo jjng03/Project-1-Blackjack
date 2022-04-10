@@ -195,8 +195,13 @@ function hitMe() {
   
   // player winning conditions
   if (playerSum > 21) {
-    onHit = false;
+    cardImg = document.createElement("img");
+    cardImg.src = "./cards/" + dealerCards[0].card + dealerCards[0].suit + ".png"; 
+    dealerText.removeChild(dealerText.children[0]); 
+    dealerText.prepend(cardImg); 
     mainText.innerHTML = ("Player Bust")
+    dealerText1.innerHTML = (`Dealer has: ${dealerSum}`);
+    onHit = false;
     return;
   } 
   console.log(playerCards);

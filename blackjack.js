@@ -3,7 +3,6 @@
 // ----------------------------------------------------------------
 
 let cards = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"];
-// let suits = ["♣", "♦", "♥", "♠"];
 let suits = ["C", "D", "H", "S"];
 let values = [2, 3, 4, 5, 6, 7, 8, 9, 10, 10 , 10, 10, 11];
 let deck = [];
@@ -15,7 +14,6 @@ let playerAceCount = 0;
 let dealerAceCount = 0;
 let onHit = true;
 let cardImg = document.createElement("img");
-
 // ----------------------------------------------------------------
 // ****************** DOM VARIABLES ******************
 // ----------------------------------------------------------------
@@ -35,7 +33,7 @@ let mainText = document.querySelector(".text")
 // ----------------------------------------------------------------
 
 dealBtn.addEventListener("click", () => {
-  // going through each image and removing the image
+  // going through each image under dealer/player div class in html and removing each image
   dealerText.querySelectorAll("img").forEach((i) => i.remove());
   playerText.querySelectorAll("img").forEach((i) => i.remove());
 
@@ -47,6 +45,7 @@ dealBtn.addEventListener("click", () => {
   onHit = true;
   playerAceCount = 0;
   dealerAceCount = 0;
+  dealerText1.innerHTML = ('Dealer has: ');
 });
 
 
@@ -77,8 +76,14 @@ function startGame() {
 
   getSum();
   
-  // shows dealer cards
+  // displays dealer cards
   for (let i = 0; i < dealerCards.length; i++) {
+    if (i === 0) {
+      cardImg = document.createElement("img");
+      cardImg.src = "./cards/BACK.png";
+      dealerText.append(cardImg);
+      continue;
+    }
     cardImg = document.createElement("img");
     cardImg.src = "./cards/" + dealerCards[i].card + dealerCards[i].suit + ".png";
     dealerText.append(cardImg);
@@ -146,7 +151,6 @@ function getSum() {
     }
   }
   console.log(dealerAceCount)
-  dealerText1.innerHTML = (`Dealer has: ${dealerSum}`)
 
   for (let i = 0; i < playerCards.length; i++) {
     playerSum += playerCards[i].value 
@@ -186,6 +190,11 @@ function hitMe() {
 
 
 function stand() {
+  cardImg = document.createElement("img");
+  cardImg.src = "./cards/" + dealerCards[0].card + dealerCards[0].suit + ".png"; // taking the actual card of the "back card"
+  dealerText.removeChild(dealerText.children[0]); // removing the first image (which is the "back card") from the dealer class in html
+  dealerText.prepend(cardImg); // adding the actual card at [index 0] of dealer class html (basically turning the back card face up)
+
   while (dealerSum < 17) {
     // if (dealerSum < playerSum) {
       // draw a new card for dealer
@@ -196,6 +205,7 @@ function stand() {
       dealerText.append(cardImg);
       getSum();
   }
+    dealerText1.innerHTML = (`Dealer has: ${dealerSum}`);
     console.log(dealerCards);
     // console.log(playerSum);
     // console.log(dealerSum);

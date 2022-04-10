@@ -62,8 +62,8 @@ button {
 
 #dealer_cards img,
 #player_cards img {
-    height: 140px;
-    width: 100px;
+    height: 110px;
+    width: 90px;
     margin: 1px;
     margin-top: -40px;
 }

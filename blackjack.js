@@ -56,7 +56,7 @@ hitBtn.addEventListener('click', () => {
 
 
 standBtn.addEventListener('click', () => {
-  onHit = false;
+  // onHit = false;
   stand();
 })
 
@@ -97,6 +97,7 @@ function startGame() {
     playerText.append(cardImg);
   }
   
+  // blackjack conditions
   if (playerCards[0].value + playerCards[1].value === 21) {
     mainText.innerHTML = ("Player BLACKJACK")
     dealerText1.innerHTML = (`Dealer has: ${dealerSum}`);
@@ -104,6 +105,17 @@ function startGame() {
     cardImg.src = "./cards/" + dealerCards[0].card + dealerCards[0].suit + ".png"; // taking the actual card of the "back card"
     dealerText.removeChild(dealerText.children[0]); // removing the first image (which is the "back card") from the dealer class in html
     dealerText.prepend(cardImg); // adding the actual card at [index 0] of dealer class html (basically turning the back card face up)
+    onHit = false;
+    return;
+  }
+
+  else if (dealerCards[0].value + dealerCards[1].value === 21) {
+    mainText.innerHTML = ("Dealer BLACKJACK")
+    dealerText1.innerHTML = (`Dealer has: ${dealerSum}`);
+    cardImg = document.createElement("img");
+    cardImg.src = "./cards/" + dealerCards[0].card + dealerCards[0].suit + ".png"; 
+    dealerText.removeChild(dealerText.children[0]); 
+    dealerText.prepend(cardImg); 
     onHit = false;
     return;
   }
@@ -215,7 +227,7 @@ function stand() {
   dealerText.prepend(cardImg); 
 
   if (playerSum >= 21) {
-    // prevents the stand button to add another card for the dealer
+    // prevents the "stand button" to add another card for the dealer
     return;
   }
 

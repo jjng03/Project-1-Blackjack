@@ -14,6 +14,8 @@ let dealerSum = 0;
 let playerSum = 0;
 let dealerCards = [];
 let playerCards = [];
+let playerAceCount = 0;
+let dealerAceCount = 0;
 let nextPlayerCard = "";
 let nextDealerCard = "";
 let onHit = true;
@@ -43,6 +45,8 @@ dealBtn.addEventListener("click", () => {
   shuffleDeck(deck);
   startGame();
   onHit = true;
+  playerAceCount = 0;
+  dealerAceCount = 0;
 });
 
 
@@ -119,19 +123,34 @@ function getSum() {
 
   for (let i = 0; i < dealerCards.length; i++) {
     // iterates through dealerCards array
-    dealerSum += dealerCards[i].value
-    // adds the card values (dealerSum = dealerSum + dealerCards[i].value)
+
+    dealerSum += dealerCards[i].value // adds the card values (dealerSum = dealerSum + dealerCards[i].value)
+
+    if (dealerCards[i].value === 11) {
+      dealerAceCount += 1;
+    }
+    if (dealerSum > 21 && dealerAceCount > 0) {
+      dealerSum -= 10;
+      dealerAceCount --;
+    }
   }
+  console.log(dealerAceCount)
   dealerText1.innerHTML = (`Dealer has: ${dealerSum}`)
 
   for (let i = 0; i < playerCards.length; i++) {
     playerSum += playerCards[i].value 
+    if (playerCards[i].value === 11) {
+      playerAceCount += 1;
+    }
+    if (playerSum > 21 && playerAceCount > 0) {
+      playerSum -= 10;
+      playerAceCount --;
+    }
   }
   playerText1.innerHTML = (`Player has: ${playerSum}`)
 
-  // if (playerCards[i].value === 11) {
-  //   playerAceCount += 1;
-  // }
+  // console.log(playerAceCount)
+  
 }
 
 

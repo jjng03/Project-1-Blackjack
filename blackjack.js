@@ -2,9 +2,9 @@
 // ****************** GLOBAL VARIABLES ******************
 // ----------------------------------------------------------------
 
-let cards = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
+let cards = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"];
 let suits = ["♣", "♦", "♥", "♠"];
-let values = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10 , 10, 10];
+let values = [2, 3, 4, 5, 6, 7, 8, 9, 10, 10 , 10, 10, 11];
 let deck = [];
 // let gameStart = false;
 // let gameOver = false;
@@ -72,7 +72,7 @@ function startGame() {
   playerCards = [deck.pop(), deck.pop()];
 
   getSum();
-
+  
   dealerText.innerHTML = (dealerCards[0].card + dealerCards[0].suit + " " + dealerCards[1].card + dealerCards[1].suit) // displaying the cards for each player and dealer
   playerText.innerHTML = (playerCards[0].card + playerCards[0].suit + " " + playerCards[1].card + playerCards[1].suit)
   
@@ -128,6 +128,10 @@ function getSum() {
     playerSum += playerCards[i].value 
   }
   playerText1.innerHTML = (`Player has: ${playerSum}`)
+
+  // if (playerCards[i].value === 11) {
+  //   playerAceCount += 1;
+  // }
 }
 
 
@@ -144,16 +148,13 @@ function hitMe() {
     playerText.innerHTML = nextPlayerCard; // displays the next card onto the board
   }
   nextPlayerCard = ""; // after the "for loop", reset to an empty string so it doesn't repeat the previous cards
-
+  
   getSum();
+  
   if (playerSum > 21) {
     onHit = false;
     mainText.innerHTML = ("Player Bust")
   } 
-  // else if (playerSum > dealerSum && dealerSum >= 17) {
-  //   onHit = false;
-  //   mainText.innerHTML = ("PLAYER WINS!")
-  // }
   console.log(playerCards);
 }
 
@@ -170,17 +171,10 @@ function stand() {
       " ";
       getSum();
   }
-
-    // add to html
-    // dealerText.innerHTML +=
-    //   dealerCards[dealerCards.length - 1].card +
-    //   dealerCards[dealerCards.length - 1].suit +
-    //   " ";
-
     console.log(dealerCards);
     // console.log(playerSum);
     // console.log(dealerSum);
-
+    
     // if dealer has a higher sum than player and is not over 21, DEALER WINS
     if (dealerSum > playerSum && dealerSum < 22) {
       mainText.innerHTML = ("Dealer wins");
@@ -195,12 +189,6 @@ function stand() {
     } 
     else if (playerSum > dealerSum && dealerSum >= 17) {
       // onHit = false;
-      mainText.innerHTML = ("Player wins!")
+      mainText.innerHTML = ("Player wins")
     }
 }
-
-
-
-// function checkAce() {
-//   if ()
-// }

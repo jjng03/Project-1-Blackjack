@@ -1,7 +1,5 @@
 /*
 
-** homepage will have a play button that will transition into the game **
-
 1) Assigning global variables / DOM
 -player
 -dealer

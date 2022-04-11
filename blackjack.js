@@ -56,7 +56,7 @@ hitBtn.addEventListener('click', () => {
 
 
 standBtn.addEventListener('click', () => {
-  // onHit = false;
+  onHit = false;
   stand();
 })
 

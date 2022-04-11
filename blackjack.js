@@ -249,9 +249,8 @@ function stand() {
       cardImg = document.createElement("img");
       cardImg.src = "./cards/" + dealerCards[dealerCards.length - 1].card + dealerCards[dealerCards.length - 1].suit + ".png";
       dealerText.append(cardImg);
-      // getSum();
+      getSum();
   }
-    getSum();
     dealerText1.innerHTML = (`Dealer has: ${dealerSum}`);
     console.log(dealerCards);
     // console.log(playerSum);

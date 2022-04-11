@@ -1,9 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Bungee+Inline&display=swap');
+
 *,
 *::after,
 *::before {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+body {
+    background-image: url("blackjack_table.jpg");
+    background-position: center;
+    background-size: cover;
+    height: 1300px;
 }
 
 body,
@@ -16,34 +24,42 @@ main {
 
 h2,
 h3 {
-    font-size: 20px;
+    font-family: 'Bungee Inline', cursive;
+    font-size: 18px;
     text-align: center;
 }
 
 header {
-    margin-top: 60px;
-    margin-bottom: 50px;
+    font-family: 'Bungee Inline', cursive;
+    font-size: 50px;
+    color: white;
+    margin-bottom: 150px;
 }
 
 .dealer,
 .player {
-    height: 300px;
-    width: 650px;
-    margin: 20px;
-    padding: 10px;
+    height: 225px;
+    width: 800px;
+    margin: 10px;
     border-radius: 5px;
-    /* border: solid 1px black; */
+    /* border: 1px solid black; */
+}
+
+.dealer-player {
+    margin-bottom: 400px;
 }
 
 .text {
     font-size: 20px;
+    font-weight: bolder;
+    color: purple;
     text-align: center;
 }
 
 #player_cards,
 #dealer_cards {
     text-align: center;
-    margin-top: 100px;
+    margin-top: 80px;
 }
 
 /* styling for buttons */
@@ -59,6 +75,15 @@ button {
     padding: 10px;
     border-radius: 10px;
 }
+
+#hit_btn {
+    width: 7%;
+}
+#deal_btn {
+    width: 7%;
+}
+
+/* card images */
 
 #dealer_cards img,
 #player_cards img {

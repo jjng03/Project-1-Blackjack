@@ -172,7 +172,7 @@ function getSum() {
     if (dealerCards[i].value === 11) {
       dealerAceCount ++;
     }
-    if (dealerSum > 21 && dealerAceCount > 1) {
+    if (dealerSum > 21 && dealerAceCount > 0) {
       dealerSum -= 10;
       dealerAceCount --;
     }
@@ -186,7 +186,7 @@ function getSum() {
     if (playerCards[i].value === 11) {
       playerAceCount ++;
     }
-    if (playerSum > 21 && playerAceCount > 1) {
+    if (playerSum > 21 && playerAceCount > 0) {
       playerSum -= 10;
       playerAceCount --;
     } 

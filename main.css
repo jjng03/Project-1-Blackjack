@@ -61,7 +61,15 @@ h3 {
 button {
     margin: 5px;
     padding: 10px;
-    border-radius: 10px;
+    border-radius: 5px;
+    color: white;
+    border: none;
+    background-color: #0047AB;
+    transition: all 0.3s ease-in-out;
+}
+
+button:hover {
+    background-color: #0BDA51;
 }
 
 #hit_btn {

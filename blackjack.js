@@ -264,11 +264,12 @@ function stand() {
       mainText.innerHTML = ("Dealer bust");
     }
     // if dealer and player have same sum, its a TIE (dealer must hit if less than 17)
-    else if (dealerSum === playerSum && dealerSum >= 17 && dealerSum < 22) {
+    else if (dealerSum === playerSum) {
       mainText.innerHTML = ("Push");
     } 
     else if (playerSum > dealerSum && playerSum < 22 && dealerSum >= 17) {
       // onHit = false;
       mainText.innerHTML = ("Player wins")
     }
+    dealerText1.innerHTML = (`Dealer has: ${dealerSum}`);
 }

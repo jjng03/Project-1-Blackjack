@@ -79,6 +79,7 @@ function startGame() {
   
   // displays dealer cards
   for (let i = 0; i < dealerCards.length; i++) {
+    // targeting the back card which is at index 0
     if (i === 0) {
       cardImg = document.createElement("img");
       cardImg.src = "./cards/BACK.png";
@@ -98,6 +99,8 @@ function startGame() {
   }
   
   // blackjack conditions
+
+  // targeting the first two cards dealt
   if (playerCards[0].value + playerCards[1].value === 21) {
     mainText.innerHTML = ("Player BLACKJACK")
     dealerText1.innerHTML = (`Dealer has: ${dealerSum}`);
@@ -109,7 +112,7 @@ function startGame() {
     return;
   }
 
-  else if (dealerCards[0].value + dealerCards[1].value === 21) {
+  if (dealerCards[0].value + dealerCards[1].value === 21) {
     mainText.innerHTML = ("Dealer BLACKJACK")
     dealerText1.innerHTML = (`Dealer has: ${dealerSum}`);
     cardImg = document.createElement("img");
@@ -167,28 +170,31 @@ function getSum() {
     dealerSum += dealerCards[i].value // adds the card values (dealerSum = dealerSum + dealerCards[i].value)
 
     if (dealerCards[i].value === 11) {
-      dealerAceCount += 1;
+      dealerAceCount ++;
     }
-    if (dealerSum > 21 && dealerAceCount > 0) {
+    if (dealerSum > 21 && dealerAceCount > 1) {
       dealerSum -= 10;
       dealerAceCount --;
     }
   }
   console.log(dealerAceCount)
 
+  // check Ace count 
   for (let i = 0; i < playerCards.length; i++) {
     playerSum += playerCards[i].value 
+
     if (playerCards[i].value === 11) {
-      playerAceCount += 1;
+      playerAceCount ++;
     }
-    if (playerSum > 21 && playerAceCount > 0) {
+    if (playerSum > 21 && playerAceCount > 1) {
       playerSum -= 10;
       playerAceCount --;
-    }
+    } 
   }
+
   playerText1.innerHTML = (`Player has: ${playerSum}`)
 
-  // console.log(playerAceCount)
+  console.log(playerAceCount)
   
 }
 
@@ -228,12 +234,16 @@ function stand() {
 
   if (playerSum >= 21) {
     // prevents the "stand button" to add another card for the dealer
+    // (basically means to stop running the function if playerSum is over or equal to 21)
+    return;
+  }
+
+  if (dealerSum === 21){
     return;
   }
 
   while (dealerSum < 17) {
-    // if (dealerSum < playerSum) {
-      // draw a new card for dealer
+      // draw a new card for dealer if less than 17
       dealerCards.push(deck.pop());
       cardImg = document.createElement("img");
       cardImg.src = "./cards/" + dealerCards[dealerCards.length - 1].card + dealerCards[dealerCards.length - 1].suit + ".png";

@@ -170,6 +170,7 @@ function getSum() {
 
     dealerSum += dealerCards[i].value // adds the card values (dealerSum = dealerSum + dealerCards[i].value)
 
+    // check Ace count 
     if (dealerCards[i].value === 11) {
       dealerAceCount ++;
     }
@@ -180,7 +181,6 @@ function getSum() {
   }
   console.log(dealerAceCount)
 
-  // check Ace count 
   for (let i = 0; i < playerCards.length; i++) {
     playerSum += playerCards[i].value 
 
@@ -249,8 +249,9 @@ function stand() {
       cardImg = document.createElement("img");
       cardImg.src = "./cards/" + dealerCards[dealerCards.length - 1].card + dealerCards[dealerCards.length - 1].suit + ".png";
       dealerText.append(cardImg);
-      getSum();
+      // getSum();
   }
+    getSum();
     dealerText1.innerHTML = (`Dealer has: ${dealerSum}`);
     console.log(dealerCards);
     // console.log(playerSum);

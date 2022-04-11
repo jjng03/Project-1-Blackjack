@@ -65,6 +65,7 @@ newGameBtn.addEventListener('click', () => {
   dealerText.innerHTML = "";
   playerText1.innerHTML = "Player";
   dealerText1.innerHTML = "Dealer";
+  mainText.innerHTML = 'Press "Deal" to play';
 })
 
 // ----------------------------------------------------------------
@@ -184,11 +185,11 @@ function getSum() {
     playerSum += playerCards[i].value 
 
     if (playerCards[i].value === 11) {
-      playerAceCount ++;
+      playerAceCount++;
     }
     if (playerSum > 21 && playerAceCount > 0) {
       playerSum -= 10;
-      playerAceCount --;
+      playerAceCount--;
     } 
   }
 

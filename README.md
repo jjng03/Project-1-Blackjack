@@ -20,3 +20,6 @@ Blackjack is a player vs dealer card game.  The objective of the game is to beat
 # Reference
 ** playing card images **
 https://boardgames.stackexchange.com/questions/51426/where-can-i-download-high-quality-images-of-poker-cards 
+
+** background table ** 
+https://www.vecteezy.com/vector-art/6325236-poker-table-green-cloth-on-dark-background-vector-illustration

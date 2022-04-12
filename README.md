@@ -42,6 +42,9 @@ https://boardgames.stackexchange.com/questions/51426/where-can-i-download-high-q
 ** background table ** 
 https://www.vecteezy.com/vector-art/6325236-poker-table-green-cloth-on-dark-background-vector-illustration
 
+** start screen page ** 
+https://www.youtube.com/watch?v=MOlaldp1Fv4&ab_channel=ConorBailey
+
 # Game Link
 
 http://127.0.0.1:5500/projects/Project-1-Blackjack/

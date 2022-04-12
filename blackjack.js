@@ -26,10 +26,17 @@ let playerText = document.getElementById("player_cards");
 let dealerText1 = document.querySelector("h2");
 let playerText1 = document.querySelector("h3");
 let mainText = document.querySelector(".text")
+let start = document.querySelector(".start-screen")
 
 // ----------------------------------------------------------------
 // ****************** BUTTONS ******************
 // ----------------------------------------------------------------
+
+document.addEventListener('DOMContentLoaded', (e) => {
+  setTimeout(() => {
+    start.classList.add('hidden');
+  }, 2000);
+})
 
 dealBtn.addEventListener("click", () => {
   // going through each image under dealer/player div class in html and removing each image

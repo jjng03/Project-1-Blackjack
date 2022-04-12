@@ -12,7 +12,6 @@ let dealerCards = [];
 let playerCards = [];
 let playerAceCount = 0;
 let dealerAceCount = 0;
-let onHit = true;
 let cardImg = document.createElement("img");
 // ----------------------------------------------------------------
 // ****************** DOM VARIABLES ******************
@@ -40,7 +39,8 @@ dealBtn.addEventListener("click", () => {
   mainText.innerHTML = ('Cards are dealt!')
   dealerText1.innerHTML = ('Dealer has: ');
   deck = [];
-  onHit = true;
+  hitBtn.disabled = false;
+  standBtn.disabled = false;
   playerAceCount = 0;
   dealerAceCount = 0;
 
@@ -56,7 +56,6 @@ hitBtn.addEventListener('click', () => {
 
 
 standBtn.addEventListener('click', () => {
-  onHit = false;
   stand();
 })
 
@@ -109,8 +108,8 @@ function startGame() {
     cardImg.src = "./cards/" + dealerCards[0].card + dealerCards[0].suit + ".png"; // taking the actual card of the "back card"
     dealerText.removeChild(dealerText.children[0]); // removing the first image (which is the "back card") from the dealer class in html
     dealerText.prepend(cardImg); // adding the actual card at [index 0] of dealer class html (basically turning the back card face up)
-    onHit = false;
-    return;
+    standBtn.disabled = true;
+    hitBtn.disabled = true;
   }
 
   if (dealerCards[0].value + dealerCards[1].value === 21) {
@@ -120,9 +119,15 @@ function startGame() {
     cardImg.src = "./cards/" + dealerCards[0].card + dealerCards[0].suit + ".png"; 
     dealerText.removeChild(dealerText.children[0]); 
     dealerText.prepend(cardImg); 
-    onHit = false;
-    return;
+    standBtn.disabled = true;
+    hitBtn.disabled = true;
   }
+
+  else if (dealerCards[0].value + dealerCards[1].value === 21 && playerCards[0].value + playerCards[1].value === 21) {
+    mainText.innerHTML = ("Push");
+    standBtn.disabled = true;
+    hitBtn.disabled = true;
+  } 
 
   console.log(dealerCards)
   console.log(playerCards)
@@ -166,8 +171,6 @@ function getSum() {
   playerSum = 0;
 
   for (let i = 0; i < dealerCards.length; i++) {
-    // iterates through dealerCards array
-
     dealerSum += dealerCards[i].value // adds the card values (dealerSum = dealerSum + dealerCards[i].value)
 
     // check Ace count 
@@ -201,9 +204,6 @@ function getSum() {
 
 
 function hitMe() {
-  if (onHit === false) {
-    return
-  }
   playerCards.push(deck.pop()); // removes the last element in deck array and add it to playerCards array
 
   cardImg = document.createElement("img");
@@ -220,8 +220,8 @@ function hitMe() {
     dealerText.prepend(cardImg); 
     mainText.innerHTML = ("Player Bust")
     dealerText1.innerHTML = (`Dealer has: ${dealerSum}`);
-    onHit = false;
-    return;
+    hitBtn.disabled = true;
+    standBtn.disabled = true;
   } 
   console.log(playerCards);
 }
@@ -252,18 +252,26 @@ function stand() {
     // if dealer has a higher sum than player and is not over 21, DEALER WINS
     if (dealerSum > playerSum && dealerSum < 22) {
       mainText.innerHTML = ("Dealer wins");
+      standBtn.disabled = true;
+      hitBtn.disabled = true;
     }
     // if dealer goes over 21, DEALER BUSTS
     else if (dealerSum > 21) {
       mainText.innerHTML = ("Dealer bust");
+      standBtn.disabled = true;
+      hitBtn.disabled = true;
     }
     // if dealer and player have same sum, its a TIE (dealer must hit if less than 17)
     else if (dealerSum === playerSum) {
       mainText.innerHTML = ("Push");
+      standBtn.disabled = true;
+      hitBtn.disabled = true;
     } 
     else if (playerSum > dealerSum && dealerSum >= 17) {
       // onHit = false;
       mainText.innerHTML = ("Player wins")
+      standBtn.disabled = true;
+      hitBtn.disabled = true;
     }
     dealerText1.innerHTML = (`Dealer has: ${dealerSum}`);
 }

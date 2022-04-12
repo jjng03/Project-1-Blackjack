@@ -1,5 +1,7 @@
 /*
 
+** adding a start screen ** 
+
 1) Assigning global variables / DOM
 -player
 -dealer

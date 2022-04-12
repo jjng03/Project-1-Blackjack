@@ -31,12 +31,12 @@ h3 {
 
 .dealer,
 .player {
-    height: 12vh;
+    height: 10vh;
     width: 75vh;
 }
 
 .dealer-player {
-    margin-top: 70px;
+    margin-top: 140px;
 }
 
 .text {
@@ -50,7 +50,7 @@ h3 {
 #player_cards,
 #dealer_cards {
     text-align: center;
-    margin-top: 50px;
+    margin-top: 60px;
 }
 
 /* BUTTONS */
@@ -65,7 +65,7 @@ h3 {
 
 button {
     margin: 5px;
-    margin-top: 30px;
+    margin-top: 100px;
     padding: 10px;
     border-radius: 5px;
     color: white;
@@ -97,7 +97,7 @@ button:hover {
     height: 10vh;
     width: 8.5vh;
     margin: 1px;
-    margin-top: -12px;
+    margin-top: -30px;
 }
 
 /* START SCREEN */
@@ -110,6 +110,8 @@ button:hover {
     height: 100vh;
     z-index: 200;
     background-color: black;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 40px;
     color: white;
     text-align: center;
     line-height: 90vh;

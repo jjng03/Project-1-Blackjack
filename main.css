@@ -11,7 +11,7 @@ body {
     background-image: url("blackjack_table.jpg");
     background-position: center;
     background-size: cover;
-    height: 1300px;
+    height: 100vh;
 }
 
 body,
@@ -31,12 +31,13 @@ h3 {
 
 .dealer,
 .player {
-    height: 110px;
-    width: 800px;
+    height: 8.5vh;
+    width: 75vh;
+    align-items: center;
 }
 
 .dealer-player {
-    margin-top: 70px;
+    margin-top: 28px;
 }
 
 .text {
@@ -50,7 +51,7 @@ h3 {
 #player_cards,
 #dealer_cards {
     text-align: center;
-    margin-top: 70px;
+    margin-top: 50px;
 }
 
 /* BUTTONS */
@@ -59,11 +60,13 @@ h3 {
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
+    width: 40vh;
 }
 
 button {
     margin: 5px;
-    margin-top: 30px;
+    margin-top: 25px;
     padding: 10px;
     border-radius: 5px;
     color: white;
@@ -77,25 +80,29 @@ button:hover {
 }
 
 #hit_btn {
-    width: 7%;
-}
-#deal_btn {
-    width: 7%;
+    width: 14%;
 }
 
+#deal_btn {
+    width: 14%;
+}
+
+#stand_btn {
+    width: 14%;
+}
 /* CARD IMAGES */
 
 #dealer_cards img,
 #player_cards img {
-    height: 110px;
-    width: 90px;
+    height: 9vh;
+    width: 8vh;
     margin: 1px;
-    margin-top: -40px;
+    margin-top: -30px;
 }
 
 /* START SCREEN */
 
-.start-screen {
+/* .start-screen {
     position: fixed;
     top: 0;
     left: 0;
@@ -105,7 +112,7 @@ button:hover {
     color: white;
     text-align: center;
     line-height: 90vh;
-}
+} */
 
 /* hide start-screen */
 .hidden {

@@ -50,4 +50,4 @@ https://www.pinterest.com/pin/710372541203316426/
 
 # Game Link
 
-http://127.0.0.1:5500/projects/Project-1-Blackjack/
+https://jjng03.github.io/Project-1-Blackjack/

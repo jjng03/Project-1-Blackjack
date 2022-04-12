@@ -109,12 +109,14 @@ button:hover {
     width: 100%;
     height: 100vh;
     z-index: 200;
-    background-color: black;
+    background-image: url("blackjack_bg.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
     font-family: 'Orbitron', sans-serif;
-    font-size: 40px;
+    font-size: 30px;
     color: white;
     text-align: center;
-    line-height: 90vh;
+    line-height: 70vh;
 }
 
 /* hide start-screen */

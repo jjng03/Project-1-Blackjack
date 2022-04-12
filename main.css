@@ -36,7 +36,7 @@ h3 {
 }
 
 .dealer-player {
-    margin-top: 28px;
+    margin-top: 70px;
 }
 
 .text {
@@ -89,6 +89,7 @@ button:hover {
 #stand_btn {
     width: 14%;
 }
+
 /* CARD IMAGES */
 
 #dealer_cards img,
@@ -101,21 +102,23 @@ button:hover {
 
 /* START SCREEN */
 
-/* .start-screen {
+.start-screen {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100vh;
+    z-index: 200;
     background-color: black;
     color: white;
     text-align: center;
     line-height: 90vh;
-} */
+}
 
 /* hide start-screen */
 .hidden {
     opacity: 0;
+    z-index: -10;
     transition: all 1s;
 }
 

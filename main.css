@@ -31,9 +31,8 @@ h3 {
 
 .dealer,
 .player {
-    height: 8.5vh;
+    height: 12vh;
     width: 75vh;
-    align-items: center;
 }
 
 .dealer-player {
@@ -66,7 +65,7 @@ h3 {
 
 button {
     margin: 5px;
-    margin-top: 25px;
+    margin-top: 30px;
     padding: 10px;
     border-radius: 5px;
     color: white;
@@ -94,10 +93,10 @@ button:hover {
 
 #dealer_cards img,
 #player_cards img {
-    height: 9vh;
-    width: 8vh;
+    height: 10vh;
+    width: 8.5vh;
     margin: 1px;
-    margin-top: -30px;
+    margin-top: -12px;
 }
 
 /* START SCREEN */

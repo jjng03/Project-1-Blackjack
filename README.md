@@ -45,6 +45,9 @@ https://www.vecteezy.com/vector-art/6325236-poker-table-green-cloth-on-dark-back
 ** start screen page ** 
 https://www.youtube.com/watch?v=MOlaldp1Fv4&ab_channel=ConorBailey
 
+** background image for start screen **
+https://www.pinterest.com/pin/710372541203316426/
+
 # Game Link
 
 http://127.0.0.1:5500/projects/Project-1-Blackjack/

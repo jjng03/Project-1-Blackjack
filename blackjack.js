@@ -98,9 +98,9 @@ function startGame() {
     playerText.append(cardImg);
   }
   
-  // blackjack conditions
+  // blackjack conditions (for the first two cards dealt)
 
-  // targeting the first two cards dealt
+  // player blackjack condition
   if (playerCards[0].value + playerCards[1].value === 21) {
     mainText.innerHTML = ("Player BLACKJACK")
     dealerText1.innerHTML = (`Dealer has: ${dealerSum}`);
@@ -111,7 +111,7 @@ function startGame() {
     standBtn.disabled = true;
     hitBtn.disabled = true;
   }
-
+  // dealer blackjack condition
   if (dealerCards[0].value + dealerCards[1].value === 21) {
     mainText.innerHTML = ("Dealer BLACKJACK")
     dealerText1.innerHTML = (`Dealer has: ${dealerSum}`);
@@ -122,7 +122,7 @@ function startGame() {
     standBtn.disabled = true;
     hitBtn.disabled = true;
   }
-
+  // if both dealer and player have blackjack then push
   else if (dealerCards[0].value + dealerCards[1].value === 21 && playerCards[0].value + playerCards[1].value === 21) {
     mainText.innerHTML = ("Push");
     standBtn.disabled = true;

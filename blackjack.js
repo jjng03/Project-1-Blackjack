@@ -100,9 +100,16 @@ function startGame() {
   
   // blackjack conditions (for the first two cards dealt)
 
+  // if both dealer and player have blackjack then push
+  if (dealerCards[0].value + dealerCards[1].value === 21 && playerCards[0].value + playerCards[1].value === 21) {
+    mainText.innerHTML = ("Push");
+    standBtn.disabled = true;
+    hitBtn.disabled = true;
+  } 
+
   // player blackjack condition
-  if (playerCards[0].value + playerCards[1].value === 21) {
-    mainText.innerHTML = ("Player BLACKJACK")
+  else if (playerCards[0].value + playerCards[1].value === 21) {
+    mainText.innerHTML = ("Player BLACKJACK - Player wins")
     dealerText1.innerHTML = (`Dealer has: ${dealerSum}`);
     cardImg = document.createElement("img");
     cardImg.src = "./cards/" + dealerCards[0].card + dealerCards[0].suit + ".png"; // taking the actual card of the "back card"
@@ -112,8 +119,8 @@ function startGame() {
     hitBtn.disabled = true;
   }
   // dealer blackjack condition
-  if (dealerCards[0].value + dealerCards[1].value === 21) {
-    mainText.innerHTML = ("Dealer BLACKJACK")
+  else if (dealerCards[0].value + dealerCards[1].value === 21) {
+    mainText.innerHTML = ("Dealer BLACKJACK - Dealer wins")
     dealerText1.innerHTML = (`Dealer has: ${dealerSum}`);
     cardImg = document.createElement("img");
     cardImg.src = "./cards/" + dealerCards[0].card + dealerCards[0].suit + ".png"; 
@@ -122,12 +129,6 @@ function startGame() {
     standBtn.disabled = true;
     hitBtn.disabled = true;
   }
-  // if both dealer and player have blackjack then push
-  else if (dealerCards[0].value + dealerCards[1].value === 21 && playerCards[0].value + playerCards[1].value === 21) {
-    mainText.innerHTML = ("Push");
-    standBtn.disabled = true;
-    hitBtn.disabled = true;
-  } 
 
   console.log(dealerCards)
   console.log(playerCards)
@@ -218,7 +219,7 @@ function hitMe() {
     cardImg.src = "./cards/" + dealerCards[0].card + dealerCards[0].suit + ".png"; 
     dealerText.removeChild(dealerText.children[0]); 
     dealerText.prepend(cardImg); 
-    mainText.innerHTML = ("Player Bust")
+    mainText.innerHTML = ("Player Bust - Dealer wins")
     dealerText1.innerHTML = (`Dealer has: ${dealerSum}`);
     hitBtn.disabled = true;
     standBtn.disabled = true;
@@ -257,7 +258,7 @@ function stand() {
     }
     // if dealer goes over 21, DEALER BUSTS
     else if (dealerSum > 21) {
-      mainText.innerHTML = ("Dealer bust");
+      mainText.innerHTML = ("Dealer bust - Player wins");
       standBtn.disabled = true;
       hitBtn.disabled = true;
     }

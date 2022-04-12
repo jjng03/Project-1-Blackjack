@@ -212,7 +212,7 @@ function hitMe() {
   
   getSum();
   
-  // player winning conditions
+  // player bust condition
   if (playerSum > 21) {
     cardImg = document.createElement("img");
     cardImg.src = "./cards/" + dealerCards[0].card + dealerCards[0].suit + ".png"; 
@@ -233,13 +233,8 @@ function stand() {
   dealerText.removeChild(dealerText.children[0]); 
   dealerText.prepend(cardImg); 
 
-  if (playerSum >= 21) {
-    // prevents the "stand button" to add another card for the dealer
-    // (basically means to stop running the function if playerSum is over or equal to 21)
-    return;
-  }
-
-  if (dealerSum === 21){
+  if (playerSum > 21) {
+    // stop running the function if playerSum is over 21)
     return;
   }
 
@@ -253,9 +248,7 @@ function stand() {
   }
     dealerText1.innerHTML = (`Dealer has: ${dealerSum}`);
     console.log(dealerCards);
-    // console.log(playerSum);
-    // console.log(dealerSum);
-    
+  
     // if dealer has a higher sum than player and is not over 21, DEALER WINS
     if (dealerSum > playerSum && dealerSum < 22) {
       mainText.innerHTML = ("Dealer wins");
@@ -268,7 +261,7 @@ function stand() {
     else if (dealerSum === playerSum) {
       mainText.innerHTML = ("Push");
     } 
-    else if (playerSum > dealerSum && playerSum < 22 && dealerSum >= 17) {
+    else if (playerSum > dealerSum && dealerSum >= 17) {
       // onHit = false;
       mainText.innerHTML = ("Player wins")
     }

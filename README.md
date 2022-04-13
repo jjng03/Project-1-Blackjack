@@ -10,6 +10,10 @@ Blackjack is a player vs dealer card game.  The objective of the game is to beat
 3) Dealer will "Hit" when player decides to "Stay".
 4) Beat the dealer!
 
+# Wireframe
+
+![wireframe](https://user-images.githubusercontent.com/101623317/163188239-34bdedf9-ad3e-4bcc-8d0b-82490d2eac93.png)
+
 # Images
 
 ![blackjack1](https://user-images.githubusercontent.com/101623317/162828638-6c555425-4f9f-461f-b791-cb187ab762f9.png)

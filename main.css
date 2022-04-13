@@ -9,6 +9,7 @@
 }
 body {
     background-image: url("blackjack_table.jpg");
+    background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
     height: 100vh;
